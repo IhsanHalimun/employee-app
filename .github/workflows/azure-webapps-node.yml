@@ -47,6 +47,10 @@ jobs:
         npm run build --if-present
         npm run test --if-present
         
+    - name: add process.json
+      run: |
+        echo '{ script: "serve", env: { PM2_SERVE_SPA: "true", PM2_SERVE_HOMEPAGE: "/index.html" } }' >> build/process.json
+
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v3
       with:
@@ -72,10 +76,6 @@ jobs:
         npm install bootstrap
         npm install axios
       
-    - name: add process.json
-      run: |
-        echo '{ script: "serve", env: { PM2_SERVE_SPA: "true", PM2_SERVE_HOMEPAGE: "/index.html" } }' >> build/process.json
-
     - name: 'Deploy to Azure WebApp'
       id: deploy-to-webapp 
       uses: azure/webapps-deploy@v2
