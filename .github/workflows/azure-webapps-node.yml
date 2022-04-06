@@ -46,13 +46,7 @@ jobs:
         npm install
         npm run build --if-present
         npm run test --if-present
-        
-    - name: npm install dependencies
-      run: |
-        npm install @mui/material @emotion/react @emotion/styled
-        npm install bootstrap        
-        npm install axios
-
+      
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v3
       with:
